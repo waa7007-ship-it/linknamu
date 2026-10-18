@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-noto-sans-kr), system-ui, sans-serif;
+  --font-sans: var(--font-pretendard), system-ui, sans-serif;
 }
 
+/* 크림 → 연한 살구색. 위에 흐릿한 색 덩어리를 얹어 글래스 카드 뒤가 비쳐 보이게 한다. */
 body {
-  color: var(--color-gray-900);
+  color: var(--color-stone-800);
   background:
-    radial-gradient(circle at 15% 10%, var(--color-sky-100), transparent 45%),
-    radial-gradient(circle at 85% 90%, var(--color-sky-50), transparent 50%),
-    linear-gradient(160deg, #f0f9ff 0%, #f8fafc 100%);
+    radial-gradient(40rem 28rem at 10% 0%, #ffe9d6 0%, transparent 70%),
+    radial-gradient(36rem 30rem at 100% 55%, #ffd9c4 0%, transparent 70%),
+    radial-gradient(30rem 24rem at 0% 100%, #fde4dc 0%, transparent 70%),
+    linear-gradient(170deg, #fffaf3 0%, #fdf0e3 50%, #fbe2cf 100%);
   background-attachment: fixed;
 }

@@ -32,8 +32,8 @@ export default function ProfilePage({ params }: PageProps<"/[username]">) {
           <ProfileContent params={params} />
         </Suspense>
 
-        <footer className="mt-12 text-center text-xs text-gray-400">
-          <Link href="/" className="hover:text-sky-600">
+        <footer className="mt-12 text-center text-xs text-stone-400">
+          <Link href="/" className="hover:text-stone-600">
             링크나무
           </Link>
         </footer>
@@ -60,7 +60,7 @@ async function ProfileContent({ params }: Pick<PageProps<"/[username]">, "params
           ))}
         </ul>
       ) : (
-        <p className="mt-10 text-center text-sm text-gray-500">아직 등록된 링크가 없어요.</p>
+        <p className="mt-10 text-center text-sm text-stone-500">아직 등록된 링크가 없어요.</p>
       )}
     </>
   );
@@ -69,12 +69,12 @@ async function ProfileContent({ params }: Pick<PageProps<"/[username]">, "params
 function ProfileSkeleton() {
   return (
     <div aria-hidden="true" className="flex animate-pulse flex-col items-center">
-      <div className="h-24 w-24 rounded-full bg-sky-100" />
-      <div className="mt-5 h-7 w-28 rounded bg-gray-200" />
-      <div className="mt-3 h-4 w-56 rounded bg-gray-200" />
+      <div className="h-28 w-28 rounded-full bg-orange-100" />
+      <div className="mt-5 h-7 w-28 rounded bg-stone-200/70" />
+      <div className="mt-3 h-4 w-56 rounded bg-stone-200/70" />
       <div className="mt-10 flex w-full flex-col gap-3">
         {[0, 1, 2].map((i) => (
-          <div key={i} className="h-14 rounded-2xl bg-white/70" />
+          <div key={i} className="h-16 rounded-3xl bg-white/50" />
         ))}
       </div>
     </div>

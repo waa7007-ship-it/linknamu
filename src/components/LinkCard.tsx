@@ -17,24 +17,34 @@ const iconPaths: Record<LinkIcon, string> = {
 type LinkCardProps = Pick<PublicLink, "title" | "icon"> & {
   /** 공개 프로필에서는 클릭 수를 세기 위해 리다이렉트 주소(/r/링크ID)를 넘긴다. */
   href: string;
+  /** 있으면 SVG 아이콘 대신 이 이모지를 보여 준다. */
+  emoji?: string;
 };
 
-export default function LinkCard({ href, title, icon }: LinkCardProps) {
+export default function LinkCard({ href, title, icon, emoji }: LinkCardProps) {
+  // mailto: 링크를 새 탭으로 열면 빈 탭만 남으므로 현재 탭에서 연다.
+  const opensNewTab = !href.startsWith("mailto:");
+
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group relative flex min-h-14 w-full items-center justify-center rounded-2xl border border-gray-200 bg-white px-14 py-4 text-[15px] font-semibold text-gray-800 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:border-sky-400 hover:text-sky-700 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 active:translate-y-0"
+      {...(opensNewTab && { target: "_blank", rel: "noopener noreferrer" })}
+      className="group relative flex min-h-16 w-full items-center justify-center rounded-3xl border border-white/70 bg-white/45 px-14 py-4 text-[15px] font-semibold text-stone-800 shadow-[0_8px_24px_-12px_rgba(160,90,50,0.25),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl transition duration-300 ease-out hover:-translate-y-px hover:bg-white/65 hover:shadow-[0_12px_28px_-12px_rgba(160,90,50,0.32),inset_0_1px_0_rgba(255,255,255,0.9)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-400 active:translate-y-0"
     >
-      <svg
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden="true"
-        className="absolute left-5 h-5 w-5 text-gray-500 transition-colors group-hover:text-sky-600"
-      >
-        <path d={iconPaths[icon]} />
-      </svg>
+      {emoji ? (
+        <span aria-hidden="true" className="absolute left-6 text-xl leading-none">
+          {emoji}
+        </span>
+      ) : (
+        <svg
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          aria-hidden="true"
+          className="absolute left-6 h-5 w-5 text-stone-500 transition-colors group-hover:text-stone-700"
+        >
+          <path d={iconPaths[icon]} />
+        </svg>
+      )}
       <span className="truncate">{title}</span>
     </a>
   );

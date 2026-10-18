@@ -10,9 +10,9 @@ export default function ProfileHeader({ name, bio, avatarUrl }: ProfileHeaderPro
   return (
     <header className="flex flex-col items-center text-center">
       <Avatar name={name} src={avatarUrl} />
-      <h1 className="mt-7 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{name}</h1>
+      <h1 className="mt-6 text-2xl font-bold tracking-tight text-stone-900">{name}</h1>
       {bio && (
-        <p className="mt-4 text-lg leading-relaxed text-gray-600 break-keep sm:text-xl">{bio}</p>
+        <p className="mt-2 text-[15px] leading-relaxed text-stone-500 break-keep">{bio}</p>
       )}
     </header>
   );
